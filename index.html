@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trivial Multiedad — Familia</title>
+  <meta name="description" content="Trivial familiar multiedad (5, 10 y 18+), multijugador, categorías equilibradas, 500 preguntas.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>Trivial Multiedad</h1>
+    <p class="subtitle">5 años · 10 años · 18+</p>
+  </header>
+
+  <!-- Setup screen -->
+  <section id="setup" class="view active" aria-labelledby="setup-title">
+    <h2 id="setup-title">Configurar partida</h2>
+
+    <form id="player-form" class="card" autocomplete="off">
+      <div class="form-row">
+        <label for="player-name">Nombre del jugador</label>
+        <input id="player-name" type="text" placeholder="Ej.: Ana" required>
+      </div>
+      <div class="form-row">
+        <label for="player-age">Rango de edad</label>
+        <select id="player-age">
+          <option value="5">5 años</option>
+          <option value="10">10 años</option>
+          <option value="18">18+</option>
+        </select>
+      </div>
+      <div class="form-actions">
+        <button type="button" id="add-player">Añadir jugador</button>
+      </div>
+    </form>
+
+    <div class="players-list card" aria-live="polite">
+      <h3>Jugadores</h3>
+      <ul id="players"></ul>
+      <div class="hint">Puedes añadir tantos jugadores como quieras.</div>
+    </div>
+
+    <div class="start card">
+      <div class="form-row">
+        <label for="win-score">Puntos para ganar (opcional)</label>
+        <input id="win-score" type="number" min="1" max="99" placeholder="Sin límite">
+      </div>
+      <button id="start-game" class="primary">Comenzar</button>
+      <button id="demo-fill" class="ghost" title="Añade 3 jugadores de ejemplo">Demo</button>
+    </div>
+
+    <details class="card">
+      <summary>Cómo se juega</summary>
+      <ul>
+        <li>Partida multiedad: cada jugador recibe preguntas de su rango (5, 10 o 18+).</li>
+        <li>Categorías equilibradas: el juego rota las 5 categorías por turnos.</li>
+        <li>Preguntas aleatorias y sin repeticiones.</li>
+        <li>Funciona en cualquier navegador moderno (incluido Safari).</li>
+      </ul>
+    </details>
+  </section>
+
+  <!-- Game screen -->
+  <section id="game" class="view" aria-labelledby="game-title">
+    <div class="topbar">
+      <div class="turn-info">
+        <span id="turn-player" class="pill"></span>
+        <span id="turn-age" class="chip" title="Rango de edad"></span>
+      </div>
+      <div class="category-pill" id="category-pill"></div>
+      <div class="top-actions">
+        <button id="restart" class="ghost">Reiniciar</button>
+      </div>
+    </div>
+
+    <div id="scoreboard" class="scoreboard card" aria-live="polite"></div>
+
+    <div id="question-card" class="card">
+      <div id="question-text" class="question" aria-live="polite"></div>
+      <div id="answers" class="answers" role="group" aria-label="Respuestas"></div>
+    </div>
+
+    <div id="feedback" class="feedback" aria-live="polite"></div>
+
+    <div class="nav">
+      <button id="next" class="primary">Siguiente</button>
+    </div>
+  </section>
+
+  <footer class="app-footer">
+    <p>© 2025 Trivial Multiedad — MIT</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
